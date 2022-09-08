@@ -9,16 +9,21 @@ btnCheck.addEventListener('click',function displayStatement(){
         if(currentPrice.value=='' && initialPrice.value==''){
             statement.innerText='No pain no gain and no gain no pain'
         }
-        if(currentPrice.value-initialPrice.value>0){
+        else if(currentPrice.value===''||initialPrice.value===''||numberOfStocks.value===''){
+            statement.innerText="All fields are mandatory"
+        }
+        else if(currentPrice.value<0||initialPrice.value<0||numberOfStocks.value<0){
+            statement.innerText="Values Invalid"
+        }
+        else if(currentPrice.value-initialPrice.value>0){
             result=calculateProfit(currentPrice.value,initialPrice.value,numberOfStocks.value);
             statement.innerText=`Hey, the profit is ${result[0]} and the percent is ${result[1]}%`
         }
-        if(initialPrice.value-currentPrice.value>0){
+        else if(initialPrice.value-currentPrice.value>0){
             // console.log("Loss");
             result=calculateLoss(initialPrice.value,currentPrice.value,numberOfStocks.value);
             statement.innerText=`Hey, the loss is ${result[0]} and the percent is ${result[1]}%`
         }
-        console.log("clicked");
 })
 
 function calculateProfit(current,initial,number){

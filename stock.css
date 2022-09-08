@@ -22,3 +22,12 @@ input{
     border-radius: 8px;
     font-size: 18px;
 }
+input:focus-visible{
+    outline: blueviolet;
+}
+@media screen and (max-width:768px) {
+    input{
+        width:40%;
+    }
+    
+}
