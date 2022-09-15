@@ -16,12 +16,12 @@ btnCheck.addEventListener('click',function displayStatement(){
             statement.innerText="Values Invalid"
         }
         else if(currentPrice.value-initialPrice.value>0){
-            result=calculateProfit(currentPrice.value,initialPrice.value,numberOfStocks.value);
+            result=calculateProfit(Number(currentPrice.value),Number(initialPrice.value),Number(numberOfStocks.value));
             statement.innerText=`Hey, the profit is ${result[0]} and the percent is ${result[1]}%`
         }
         else if(initialPrice.value-currentPrice.value>0){
             // console.log("Loss");
-            result=calculateLoss(initialPrice.value,currentPrice.value,numberOfStocks.value);
+            result=calculateLoss(Number(initialPrice.value),Number(currentPrice.value),Number(numberOfStocks.value));
             statement.innerText=`Hey, the loss is ${result[0]} and the percent is ${result[1]}%`
         }
 })
@@ -29,11 +29,13 @@ btnCheck.addEventListener('click',function displayStatement(){
 function calculateProfit(current,initial,number){
     // console.log(current);
     var profit=current*number-initial*number;
-    var profitpercent=(profit/initial)*100;
+    var profitpercent=(profit/(initial*number))*100;
+    console.log(profit);
+    console.log(initial*number);
     return [profit,profitpercent];
 }
 function calculateLoss(initial,current,number){
     var loss=initial*number-current*number;
-    var losspercent=(loss/initial)*100;
+    var losspercent=(loss/(initial*number))*100;
     return [loss,losspercent];
 }
